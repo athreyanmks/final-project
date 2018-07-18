@@ -1,0 +1,15 @@
+.imgdiv img
+{
+	max-height: 200px;
+	width: auto;
+	height: auto;
+
+}
+
+/*body
+{
+	background-image: url(background.jpg);
+	background-repeat: no-repeat;
+	background-position: fixed;
+	background-size: cover;
+}*/

@@ -1,0 +1,6 @@
+.imgdiv img
+{
+	width: auto;
+	height: auto;
+	max-height: 200px;
+}
