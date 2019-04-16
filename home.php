@@ -22,15 +22,24 @@ if(!isset($_SESSION['id']))
 
 	
 
-<input type="text"  onkeyup="dynasearch(this.value);">
-<button onclick="uploadform();">Upoad Fan Art</button>
-<button onclick ="profile();">Profile</button><br>
-<div id="profsearch" ></div><br>
+
+<div class="navbar">
+	<input type="text"  onkeyup="dynasearch(this.value);">
+	<button onclick="uploadform();">Upoad Fan Art</button>
+	<button onclick ="profile();">Profile</button>
+	<button onclick="logout();" >Logout</button>
+	<div id="profsearch" style="position: fixed;" ></div>
+
+	
+</div>
 
 
 
-<button onclick="logout();" style="position: absolute; top: 10px; left: 70%;">Logout</button>
-<div id="livefeed"></div>
+
+
+
+
+<div id="livefeed" style="top: 500px"></div>
 
 
 

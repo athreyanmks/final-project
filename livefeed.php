@@ -23,12 +23,17 @@ imgid INT(11) UNSIGNED PRIMARY KEY,
 filename VARCHAR(40) NOT NULL,
 uname VARCHAR(30) NOT NULL,
 artname VARCHAR(100) NOT NULL,
-dest VARCHAR(50) NOT NULL
+dest VARCHAR(50) NOT NULL,
+nlike INT(11) DEFAULT 0
 ) ";
 	
 	if($conn->query($sql))
 	{
 		//echo "success";
+	}
+	else
+	{
+		//echo "failure";
 	}
 
 	while($row = $result->fetch_assoc())
@@ -53,9 +58,11 @@ dest VARCHAR(50) NOT NULL
 
 			$dest = $row2['dest'];
 
-			//echo $dest;
+			$nlike = $row2['nlike'];
 
-			$sql = "INSERT INTO ".$uname."temp (imgid,filename,uname,artname,dest) VALUES('$imgid','$filename','$uname2','$artname','$dest') ";
+			//echo $nlike;
+
+			$sql = "INSERT INTO ".$uname."temp (imgid,filename,uname,artname,dest,nlike) VALUES('$imgid','$filename','$uname2','$artname','$dest','$nlike') ";
 
 			//echo $sql."<br>";
 
@@ -72,12 +79,37 @@ dest VARCHAR(50) NOT NULL
 
 	//echo (string)$result->num_rows;
 
+	$uid = $_SESSION['id'];
+
 	while($row = $result->fetch_assoc())
 	{
 		//echo "success2";
+
+		$imgid = $row['imgid'];
+
+		$sql = "SELECT COUNT(likeid) as count FROM liketable WHERE imgid = '$imgid' AND uid = '$uid'";
+
+		$result3 =  $conn->query($sql);
+
+		$row3 = $result3->fetch_assoc();
+
+		$value = $row3['count'];
+
+		if($value == 1)
+		{
+			$color = "blue";
+		}
+
+		else if($value == 0)
+		{
+			$color = "solid grey";
+		}
+
 		echo "<div class='imgdiv'>";
-		echo "<p>".$row['artname']."</p><br>";
-		echo "<img src = ".$row['dest'].">";
+		echo "<a href = fartview.php?imgid=".urlencode($row['imgid']).">".$row['artname']."</a><br>";
+		echo "<img src = ".$row['dest']."><br>";
+		echo "<p id = \"likec".$imgid."\">".$row['nlike']."</p><br>";
+		echo "<button id =\"button".$row['imgid']."\" value = ".$value." style = \"background-color:".$color."\" onclick = \"tiphat(".$row['imgid'].")\">TipHat</button>";
 		echo "</div>\n";
 	}
 
