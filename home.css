@@ -6,10 +6,29 @@
 
 }
 
-/*body
+body
 {
-	background-image: url(background.jpg);
+	background-image: url(background1.jpg);
 	background-repeat: no-repeat;
-	background-position: fixed;
+	background-attachment: fixed;
 	background-size: cover;
-}*/
+}
+
+.navbar
+{
+	border: 5px solid grey;
+	border-width: width;
+	padding: 20px;
+	border-radius: 2px;
+	border-style: ridge;
+	position: fixed;
+	
+	margin: 0px;
+	padding-right: 1000px;
+}
+
+.navbar button
+{
+	border-radius: 3px;
+	background-color: dodgerblue;
+}
